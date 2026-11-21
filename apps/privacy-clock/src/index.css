@@ -1,0 +1,296 @@
+@import 'tailwindcss';
+@import '@x10/shared/styles.css';
+@source "../../../shared/src";
+
+/* ------------------------------------------------------------------ the clock tower (both themes) */
+
+:root {
+  /* Stone: lit front face, shaded side, mortar lines, the recess of a dial niche. */
+  --pc-sky-1: #e9eef5;
+  --pc-sky-2: #f6f1ea;
+  --pc-stone-hi: #f7f3ec;
+  --pc-stone: #ebe4d8;
+  --pc-stone-lo: #d9d0c0;
+  --pc-side-hi: #d3c9b7;
+  --pc-side-lo: #bfb4a0;
+  --pc-mortar: rgb(92 76 52 / 0.12);
+  --pc-ledge: #fbf8f2;
+  --pc-ledge-shadow: rgb(70 56 36 / 0.22);
+  --pc-niche: #cfc5b3;
+  --pc-niche-lo: #b9ae99;
+  --pc-belfry: #3b3346;
+  --pc-belfry-2: #241f2c;
+  --pc-roof-hi: color-mix(in oklab, var(--accent-9) 34%, #6f6a7a);
+  --pc-roof-lo: color-mix(in oklab, var(--accent-10) 30%, #3f3a48);
+  /* Dials: enamel face, brass bezel, ink. */
+  --pc-face-hi: #fffdf8;
+  --pc-face-lo: #efe8da;
+  --pc-brass-hi: #f3e3b8;
+  --pc-brass: #c9a865;
+  --pc-brass-lo: #8a6a2e;
+  --pc-ink: #2b2620;
+  --pc-ink-muted: #786f62;
+  --pc-tick: rgb(43 38 32 / 0.5);
+  --pc-glass: rgb(255 255 255 / 0.65);
+  --pc-plate: #fbf8f1;
+  --pc-plate-line: rgb(80 64 40 / 0.18);
+  --pc-light: rgb(255 244 214 / 0.55);
+  --pc-ground: #e4dccd;
+  --pc-ground-2: #d4cab7;
+  --pc-shadow: rgb(60 46 28 / 0.2);
+  --pc-glow: rgb(255 214 150 / 0);
+  --pc-crack: rgb(40 30 20 / 0.55);
+  --pc-sun: rgb(255 226 178 / 0.75);
+  --pc-foot: rgb(255 214 160 / 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --pc-sky-1: #0e1018;
+    --pc-sky-2: #1a1522;
+    --pc-stone-hi: #3a3640;
+    --pc-stone: #2e2b33;
+    --pc-stone-lo: #232027;
+    --pc-side-hi: #1f1c23;
+    --pc-side-lo: #16141a;
+    --pc-mortar: rgb(255 255 255 / 0.045);
+    --pc-ledge: #45414c;
+    --pc-ledge-shadow: rgb(0 0 0 / 0.5);
+    --pc-niche: #18161b;
+    --pc-niche-lo: #0f0e12;
+    --pc-belfry: #120f17;
+    --pc-belfry-2: #0a080d;
+    --pc-roof-hi: color-mix(in oklab, var(--accent-9) 40%, #2a2530);
+    --pc-roof-lo: color-mix(in oklab, var(--accent-8) 26%, #141117);
+    --pc-face-hi: #fff4dc;
+    --pc-face-lo: #e8d6b2;
+    --pc-brass-hi: #e9cf8f;
+    --pc-brass: #a8823f;
+    --pc-brass-lo: #5e4419;
+    --pc-ink: #2b2318;
+    --pc-ink-muted: #6f6150;
+    --pc-tick: rgb(43 35 24 / 0.55);
+    --pc-glass: rgb(255 255 255 / 0.4);
+    --pc-plate: #26232b;
+    --pc-plate-line: rgb(255 255 255 / 0.1);
+    --pc-light: rgb(200 185 255 / 0.16);
+    --pc-ground: #1b1920;
+    --pc-ground-2: #121116;
+    --pc-shadow: rgb(0 0 0 / 0.55);
+    --pc-glow: rgb(255 196 120 / 0.55);
+    --pc-crack: rgb(60 30 10 / 0.7);
+    --pc-sun: rgb(170 150 255 / 0.22);
+    --pc-foot: rgb(255 190 120 / 0.16);
+  }
+}
+
+:root[data-theme='dark'] {
+  --pc-sky-1: #0e1018;
+  --pc-sky-2: #1a1522;
+  --pc-stone-hi: #3a3640;
+  --pc-stone: #2e2b33;
+  --pc-stone-lo: #232027;
+  --pc-side-hi: #1f1c23;
+  --pc-side-lo: #16141a;
+  --pc-mortar: rgb(255 255 255 / 0.045);
+  --pc-ledge: #45414c;
+  --pc-ledge-shadow: rgb(0 0 0 / 0.5);
+  --pc-niche: #18161b;
+  --pc-niche-lo: #0f0e12;
+  --pc-belfry: #120f17;
+  --pc-belfry-2: #0a080d;
+  --pc-roof-hi: color-mix(in oklab, var(--accent-9) 40%, #2a2530);
+  --pc-roof-lo: color-mix(in oklab, var(--accent-8) 26%, #141117);
+  --pc-face-hi: #fff4dc;
+  --pc-face-lo: #e8d6b2;
+  --pc-brass-hi: #e9cf8f;
+  --pc-brass: #a8823f;
+  --pc-brass-lo: #5e4419;
+  --pc-ink: #2b2318;
+  --pc-ink-muted: #6f6150;
+  --pc-tick: rgb(43 35 24 / 0.55);
+  --pc-glass: rgb(255 255 255 / 0.4);
+  --pc-plate: #26232b;
+  --pc-plate-line: rgb(255 255 255 / 0.1);
+  --pc-light: rgb(200 185 255 / 0.16);
+  --pc-ground: #1b1920;
+  --pc-ground-2: #121116;
+  --pc-shadow: rgb(0 0 0 / 0.55);
+  --pc-glow: rgb(255 196 120 / 0.55);
+  --pc-crack: rgb(60 30 10 / 0.7);
+  --pc-sun: rgb(170 150 255 / 0.22);
+  --pc-foot: rgb(255 190 120 / 0.16);
+}
+
+/* ------------------------------------------------------------------ tower motion */
+
+.pc-place {
+  transition:
+    transform 760ms cubic-bezier(0.2, 0, 0, 1),
+    opacity 260ms cubic-bezier(0.2, 0, 0, 1),
+    filter 260ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pc-dial {
+  cursor: pointer;
+  outline: none;
+}
+.pc-dial .pc-lift {
+  transition: transform 180ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pc-dial:hover .pc-lift {
+  transform: scale(1.045);
+}
+.pc-dial .pc-focus-ring {
+  opacity: 0;
+  transition: opacity 120ms;
+}
+.pc-dial:focus-visible .pc-focus-ring {
+  opacity: 1;
+}
+.pc-hand {
+  transition: transform 1400ms cubic-bezier(0.25, 0.1, 0.1, 1);
+}
+.pc-sweep {
+  transition:
+    stroke-dasharray 1400ms cubic-bezier(0.25, 0.1, 0.1, 1),
+    stroke 400ms;
+}
+.pc-rim {
+  transition: stroke 420ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pc-pip {
+  transition: fill 420ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pc-pip-flash {
+  animation: pc-flash 1.6s ease-out 1;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.pc-tick-overdue {
+  animation: pc-tick 1s steps(1, end) infinite;
+}
+.pc-seconds {
+  animation: pc-spin 60s steps(60, end) infinite;
+}
+.pc-orbit {
+  animation: pc-spin 60s linear infinite;
+}
+.pc-pulse {
+  animation: pc-pulse 2.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.pc-overrun {
+  animation: pc-glow 1.6s ease-in-out infinite;
+}
+.pc-beam {
+  animation: pc-breathe 7s ease-in-out infinite;
+}
+.pc-mote {
+  animation: pc-drift var(--d, 16s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+.pc-gear {
+  transition: transform 900ms cubic-bezier(0.3, 0, 0.1, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.pc-bar-fill {
+  transition: width 900ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes pc-tick {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+@keyframes pc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pc-pulse {
+  0%,
+  100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.06);
+  }
+}
+@keyframes pc-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+@keyframes pc-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes pc-drift {
+  from {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  to {
+    transform: translate(26px, -90px);
+    opacity: 0;
+  }
+}
+@keyframes pc-flash {
+  0% {
+    transform: scale(2.4);
+    opacity: 0.2;
+  }
+  60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-place,
+  .pc-hand,
+  .pc-sweep,
+  .pc-gear,
+  .pc-bar-fill {
+    transition: none !important;
+  }
+  .pc-tick-overdue,
+  .pc-seconds,
+  .pc-orbit,
+  .pc-pulse,
+  .pc-overrun,
+  .pc-beam,
+  .pc-mote,
+  .pc-pip-flash {
+    animation: none !important;
+  }
+}
+
+/* The logbook prints as a document. */
+@media print {
+  .pc-logbook-entry {
+    break-inside: avoid;
+  }
+}
